@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Categoria implements Serializable{
 	
@@ -23,6 +25,7 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonManagedReference//para não ter referencia ciclica, essa anotacao tem que ser do lado que eu quero que venha os objetos associados
 	@ManyToMany(mappedBy = "categorias")//mappedBy pois foi nesse atributo que foi colocado a anotação de mapeamento indicando nome da nova tabela, indicando as FKs, não vai precisar repetir todo mapeamento já feito na tabela produtos
 	private List<Produto> produtos = new ArrayList<>();
 	
