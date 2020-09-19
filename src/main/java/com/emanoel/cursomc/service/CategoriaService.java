@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.emanoel.cursomc.domain.Categoria;
+import com.emanoel.cursomc.dto.CategoriaDTO;
 import com.emanoel.cursomc.repositories.CategoriaRepository;
 import com.emanoel.cursomc.service.exceptions.DataIntegrityException;
 import com.emanoel.cursomc.service.exceptions.ObjectNotFoundException;
@@ -57,5 +58,7 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repository.findAll(pageRequest);
 	}
-	
+	 public Categoria fromDTO (CategoriaDTO objDto) {
+		 return new Categoria(objDto.getId(), objDto.getNome());
+	 }
 }
